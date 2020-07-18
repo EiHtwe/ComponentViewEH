@@ -1,5 +1,6 @@
 package com.padcmyanmar.padcx.padc_x_recyclerview_ypst.mvp.presenters
 
+import android.util.Log
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import com.padcmyanmar.padcx.padc_x_recyclerview_ypst.data.models.NewsModelImpl
@@ -31,4 +32,17 @@ class MainPresenterImpl : MainPresenter, AbstractBasePresenter<MainView>() {
             if (it.isEmpty()) mView?.displayEmptyView() else mView?.displayNewsList(it)
         })
     }
+
+    override fun onTapLike() {
+        Log.d("TAG", "onTapLike")
+    }
+
+    override fun onTapShare() {
+        Log.d("TAG", "onTaShare")
+    }
+
+    override fun onTapComment() {
+        Log.d("TAG", "onTapComment")
+    }
+
 }
