@@ -17,6 +17,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity(), MainView {
 
+    private lateinit var mViewPodEmpty: EmptyViewPod
+
     private lateinit var mAdapter: NewsListAdapter
 
     private lateinit var viewPodEmpty: EmptyViewPod
@@ -29,7 +31,7 @@ class MainActivity : BaseActivity(), MainView {
 
         setUpPresenter()
 
-        hideEmptyView()
+        //hideEmptyView()
         setUpSwipeRefresh()
         setUpRecyclerView()
         setUpViewPod()
@@ -42,10 +44,6 @@ class MainActivity : BaseActivity(), MainView {
 
     override fun navigateToNewsDetails(newsId: Int) {
         startActivity(NewsDetailActivity.newItent(this, newsId))
-    }
-
-    override fun displayEmptyView() {
-        showEmptyView()
     }
 
     override fun enableSwipeRefresh() {
@@ -77,14 +75,9 @@ class MainActivity : BaseActivity(), MainView {
         val linearLayoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         rvNews.layoutManager = linearLayoutManager
         rvNews.adapter = mAdapter
-    }
 
-    private fun showEmptyView() {
-        vpEmpty.visibility = View.VISIBLE
-    }
+        rvNews.setEmptyView(mViewPodEmpty)
 
-    private fun hideEmptyView() {
-        vpEmpty.visibility = View.GONE
     }
 
 }
