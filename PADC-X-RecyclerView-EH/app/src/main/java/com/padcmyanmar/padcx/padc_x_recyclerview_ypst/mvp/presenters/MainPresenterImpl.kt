@@ -10,16 +10,39 @@ class MainPresenterImpl : MainPresenter, AbstractBasePresenter<MainView>() {
 
     private val mNewsModel = NewsModelImpl
 
-    override fun onTapNewsItem(newsId: Int) {
-        mView?.navigateToNewsDetails(newsId)
+    override fun onUiReady(lifeCycleOwner: LifecycleOwner) {
+        loadAllNewsFromAPI()
+        requestAllNews(lifeCycleOwner)
     }
 
     override fun onSwipeRefresh(lifecycleOwner: LifecycleOwner) {
         requestAllNews(lifecycleOwner)
     }
 
-    override fun onUiReady(lifeCycleOwner: LifecycleOwner) {
-        requestAllNews(lifeCycleOwner)
+    /**
+     * NewsItemDelegate callback method
+     */
+    override fun onTapNewsItem(newsId: Int) {
+        mView?.navigateToNewsDetails(newsId)
+    }
+
+    /**
+     * ReactionViewPods.Delegate callback method
+     */
+    override fun onTapLike() {
+        Log.d("TAG", "onTapLike")
+    }
+
+    override fun onTapShare() {
+        Log.d("TAG", "onTaShare")
+    }
+
+    override fun onTapComment() {
+        Log.d("TAG", "onTapComment")
+    }
+
+    override fun onTapTryAgain() {
+        loadAllNewsFromAPI()
     }
 
     private fun requestAllNews(lifeCycleOwner: LifecycleOwner) {
@@ -33,16 +56,10 @@ class MainPresenterImpl : MainPresenter, AbstractBasePresenter<MainView>() {
         })
     }
 
-    override fun onTapLike() {
-        Log.d("TAG", "onTapLike")
+    private fun loadAllNewsFromAPI() {
+        mNewsModel.getAllNewsFromApiAndSaveToDatabase(
+            onSuccess = {},
+            onError = {}
+        )
     }
-
-    override fun onTapShare() {
-        Log.d("TAG", "onTaShare")
-    }
-
-    override fun onTapComment() {
-        Log.d("TAG", "onTapComment")
-    }
-
 }
