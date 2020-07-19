@@ -16,6 +16,7 @@ class ReactionViewPods @JvmOverloads constructor(
         super.onFinishInflate()
         setUpListener()
     }
+
     fun setDelegate(delegate: Delegate) {
         mDelegate = delegate
     }
@@ -45,4 +46,5 @@ class ReactionViewPods @JvmOverloads constructor(
         fun onTapComment()
         fun onTapShare()
     }
+
 }

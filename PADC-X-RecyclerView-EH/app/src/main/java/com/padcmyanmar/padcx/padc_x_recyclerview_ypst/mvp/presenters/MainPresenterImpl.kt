@@ -19,16 +19,10 @@ class MainPresenterImpl : MainPresenter, AbstractBasePresenter<MainView>() {
         requestAllNews(lifecycleOwner)
     }
 
-    /**
-     * NewsItemDelegate callback method
-     */
     override fun onTapNewsItem(newsId: Int) {
         mView?.navigateToNewsDetails(newsId)
     }
 
-    /**
-     * ReactionViewPods.Delegate callback method
-     */
     override fun onTapLike() {
         Log.d("TAG", "onTapLike")
     }
@@ -49,8 +43,10 @@ class MainPresenterImpl : MainPresenter, AbstractBasePresenter<MainView>() {
         mView?.enableSwipeRefresh()
         mNewsModel.getAllNews(onError = {
             mView?.disableSwipeRefresh()
+//            mView?.displayEmptyView()
         }).observe(lifeCycleOwner, Observer {
             mView?.disableSwipeRefresh()
+//            if (it.isEmpty()) mView?.displayEmptyView() else mView?.displayNewsList(it)
             mView?.displayNewsList(it)
         })
     }

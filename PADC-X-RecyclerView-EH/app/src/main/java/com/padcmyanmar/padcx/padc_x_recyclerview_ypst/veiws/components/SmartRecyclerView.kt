@@ -41,6 +41,9 @@ class SmartRecyclerView @JvmOverloads constructor(
         mEmptyView = emptyView
     }
 
+    /**
+     * check if adapter connected to SRV is empty. If so, show emptyView.
+     */
     private fun checkIfEmpty() {
         val isEmpty = adapter!!.itemCount == 0
 

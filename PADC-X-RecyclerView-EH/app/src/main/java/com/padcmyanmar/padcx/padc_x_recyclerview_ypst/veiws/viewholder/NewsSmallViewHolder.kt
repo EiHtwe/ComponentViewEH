@@ -12,7 +12,8 @@ import kotlinx.android.synthetic.main.item_news_smalll.view.*
  * on 2020-01-18.
  */
 
-class NewsSmallViewHolder(itemView: View, private val delegate: NewsItemDelegate) : BaseNewsViewHolder(itemView){
+class NewsSmallViewHolder(itemView: View, private val delegate: NewsItemDelegate) :
+    BaseNewsViewHolder(itemView) {
 
     private val mViewPodReaction = itemView.viewPodReaction as ReactionViewPods
 
